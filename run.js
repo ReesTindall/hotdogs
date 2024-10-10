@@ -33,9 +33,9 @@ let finalTotal = subtotalAfterDiscount + taxAmount;
 
 // Display order summary on the page
 let orderSummary = `
-    <p>Hotdogs: ${numDogs} x $${showMoney(HOTDOG_PRICE)} = $${showMoney(hotdogTotal)}</p>
-    <p>Fries: ${numFries} x $${showMoney(FRIES_PRICE)} = $${showMoney(friesTotal)}</p>
-    <p>Sodas: ${numSoda} x $${showMoney(DRINK_PRICE)} = $${showMoney(sodaTotal)}</p>
+    <p>Hotdogs: ${numDogs} x $${showMoney(HOTDOG_$)} = $${showMoney(hotdogTotal)}</p>
+    <p>Fries: ${numFries} x $${showMoney(FRIES_$)} = $${showMoney(friesTotal)}</p>
+    <p>Sodas: ${numSoda} x $${showMoney(DRINK_$)} = $${showMoney(sodaTotal)}</p>
     <br>
     <p>Subtotal before discount: $${showMoney(subtotal)}</p>
     <p>Discount: $${showMoney(discount)}</p>
