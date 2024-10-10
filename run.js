@@ -23,7 +23,7 @@ let sodaTotal = numSoda * DRINK_$;
 // Calculate subtotal
 let subtotal = hotdogTotal + friesTotal + sodaTotal;
 
-// Calculate subtotal with distcount if needed
+// Calculate subtotal with discount if needed
 let discount = subtotal >= DISCOUNT_THRESHOLD ? subtotal * DISCOUNT : 0;
 let subtotalAfterDiscount = subtotal - discount;
 
