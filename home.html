@@ -4,11 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joe's Hotdog Stand Order</title>
+    <script src="run.js"></script>
 </head>
-<body>
-    <h1>Joe's Hotdog Stand Order Summary</h1>
+<body onload="initializePage()"> 
+    <h1>Joe's Hotdog Stand</h1>
+    
+    <form id="orderForm" onsubmit="return processOrder(event)"> 
+        <label for="hotdogs">Hotdogs:</label>
+        <input type="text" id="hotdogs" name="hotdogs" value="0" onblur="validateInput(this)">
+        <br><br>
+
+        <label for="fries">Fries:</label>
+        <input type="text" id="fries" name="fries" value="0" onblur="validateInput(this)">
+        <br><br>
+
+        <label for="sodas">Sodas:</label>
+        <input type="text" id="sodas" name="sodas" value="0" onblur="validateInput(this)">
+        <br><br>
+
+        <input type="submit" value="Submit Order">
+    </form>
+
     <p id="orderSummary"></p>
 
-    <script src="run.js"></script>
+    <img id="thankYouImage" src="placeholder.jpg" style="visibility:hidden;" alt="Thank you for your order!">
 </body>
 </html>
