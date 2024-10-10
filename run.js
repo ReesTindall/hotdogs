@@ -1,25 +1,28 @@
-// Constants for item prices
-const HOTDOG_PRICE = 4.80;
-const FRIES_PRICE = 3.95;
-const DRINK_PRICE = 1.99;
-const DISCOUNT_THRESHOLD = 25.00;
+const HOTDOG_$ = 4.80;
+const FRIES_$ = 3.95;
+const DRINK_$ = 1.99;
+const DISCOUNT_FLOOR = 25.00;
 const DISCOUNT_RATE = 0.10;
 const TAX_RATE = 0.0625;
+let numDogs = 0;
+let numFries = 0;
+let numSoda = 0;
 
-// Function to round numbers to 2 decimal places
-function showMoney(amount) {
-    return Math.round(amount * 100) / 100;
-}
 
-// Prompt the user for quantities of each item
+// use prompt() to ask 3 questions
 let numDogs = parseInt(prompt("How many hotdogs would you like?"), 10);
 let numFries = parseInt(prompt("How many fries would you like?"), 10);
 let numSoda = parseInt(prompt("How many sodas would you like?"), 10);
 
+// showMoney function for returning a 2 decimal number
+function showMoney(amount) {
+    return Math.round(amount * 100) / 100;
+}
+
 // Calculate total cost for each item
-let hotdogTotal = numDogs * HOTDOG_PRICE;
-let friesTotal = numFries * FRIES_PRICE;
-let sodaTotal = numSoda * DRINK_PRICE;
+let hotdogTotal = numDogs * HOTDOG_$;
+let friesTotal = numFries * FRIES_$;
+let sodaTotal = numSoda * DRINK_$;
 
 // Calculate subtotal
 let subtotal = hotdogTotal + friesTotal + sodaTotal;
