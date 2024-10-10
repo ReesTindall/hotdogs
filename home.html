@@ -6,20 +6,21 @@
     <title>Joe's Hotdog Stand Order</title>
     <script src="run.js"></script>
 </head>
-<body onload="initializePage()"> 
+<body> 
     <h1>Joe's Hotdog Stand</h1>
-    <form id="orderForm" onsubmit="return processOrder(event)"> 
+    <form id="orderForm"> 
         <label for="hotdogs">Hotdogs:</label>
-        <input type="text" id="hotdogs" name="hotdogs" value="0" onblur="validateInput(this)">
+        <input type="number" id="hotdogs" name="hotdogs" value="0">
         <br><br>
         <label for="fries">Fries:</label>
-        <input type="text" id="fries" name="fries" value="0" onblur="validateInput(this)">
+        <input type="number" id="fries" name="fries" value="0">
         <br><br>
         <label for="sodas">Sodas:</label>
-        <input type="text" id="sodas" name="sodas" value="0" onblur="validateInput(this)">
+        <input type="number" id="sodas" name="sodas" value="0">
         <br><br>
-        <input type="submit" value="Submit Order">
+        <button type="submit">Submit Order</button>
     </form>
+
     <p id="orderSummary"></p>
     <img id="thankYouImage" src="placeholder.jpg" style="visibility:hidden;" alt="Thank you for your order!">
 </body>
