@@ -7,7 +7,7 @@ const DISCOUNT_RATE = 0.10;
 const TAX_RATE = 0.0625;
 
 function initializePage() {
-    document.getElementById('thankYouImage').style.visibility = 'hidden'; // Hide thank you image initially
+    document.getElementById('thankYouImage').style.visibility = 'hidden'; 
 }
 
 function validateInput(element) {
