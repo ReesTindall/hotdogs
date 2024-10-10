@@ -64,6 +64,3 @@ function processOrder(event) {
     document.getElementById('thankYouImage').style.visibility = 'visible'; // Make the image visible
 }
 
-setTimeout(function() {
-    alert('Thanks for considering Joe’s Hotdog Stand!');
-}, 5000);
