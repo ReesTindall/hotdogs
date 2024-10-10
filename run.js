@@ -1,4 +1,4 @@
-// Prices of stuff
+// Prices of Items
 const HOTDOG_$ = 4.80;
 const FRIES_$ = 3.95;
 const DRINK_$ = 1.99;
@@ -6,86 +6,42 @@ const DISCOUNT_THRESHOLD = 25.00;
 const DISCOUNT = 0.10;
 const TAX = 0.0625;
 
-function initializePage() {
-    document.getElementById('thankYouImage').style.visibility = 'hidden'; 
-    processOrder(); 
-}
-
-// showMoney function as requested
+// showMoney function as spec requests
 function showMoney(amount) {
     return Math.round(amount * 100) / 100;
 }
 
-function processOrder() {
-    //use prompt the get users order
-    let numDogs = parseInt(prompt("How many hotdogs would you like?"), 10);
-    let numFries = parseInt(prompt("How many fries would you like?"), 10);
-    let numSoda = parseInt(prompt("How many sodas would you like?"), 10);
+// Using Prompt()
+let numDogs = parseInt(prompt("How many hotdogs would you like?"), 10) || 0;
+let numFries = parseInt(prompt("How many fries would you like?"), 10) || 0;
+let numSoda = parseInt(prompt("How many sodas would you like?"), 10) || 0;
 
-    if(numDogs < 0) {
-        alert("Need a non-negative number");
-        let numDogs = parseInt(prompt("How many hotdogs would you like?"), 10);
-    } else if(isNaN(numDogs)) numDogs = 0;
-     if(numFries < 0) {
-        alert("Need a non-negative number");
-        let numFries = parseInt(prompt("How many Fries would you like?"), 10);
-    } else if(isNaN(numFries)) numFries = 0;
-     if(numSoda < 0) {
-        alert("Need a non-negative number");
-        let numSoda = parseInt(prompt("How many Sodas would you like?"), 10);
-    } else if(isNaN(numSoda)) numSoda = 0;
+let hotdogTotal = numDogs * HOTDOG_$;
+let friesTotal = numFries * FRIES_$;
+let sodaTotal = numSoda * DRINK_$;
 
-    let items = ['Hotdogs', 'Fries', 'Sodas'];
-    let quantities = [numDogs, numFries, numSoda];
-    let prices = [HOTDOG_$, FRIES_$, DRINK_$];
+// Calculate subtotal
+let subtotal = hotdogTotal + friesTotal + sodaTotal;
 
-    let subtotal = 0;
-    let orderSummary = document.getElementById('orderSummary');
-    
-    while (orderSummary.firstChild) {
-        orderSummary.removeChild(orderSummary.firstChild);
-    }
+// Calculate subtotal with distcount if needed
+let discount = subtotal >= DISCOUNT_THRESHOLD ? subtotal * DISCOUNT : 0;
+let subtotalAfterDiscount = subtotal - discount;
 
-    // calculate the subtotal using the quantaties and prices
-    for (let i = 0; i < items.length; i++) {
-        let total = quantities[i] * prices[i];
-        let itemText = `${items[i]}: ${quantities[i]} x $${showMoney(prices[i])} = $${showMoney(total)}`;
-        
-        let itemParagraph = document.createElement('p');
-        itemParagraph.textContent = itemText;
-        orderSummary.appendChild(itemParagraph);
+// Calculate tax and final total
+let taxAmount = subtotalAfterDiscount * TAX;
+let finalTotal = subtotalAfterDiscount + taxAmount;
 
-        subtotal += total;
-    }
+// Display order summary on the page
+let orderSummary = `
+    <p>Hotdogs: ${numDogs} x $${showMoney(HOTDOG_PRICE)} = $${showMoney(hotdogTotal)}</p>
+    <p>Fries: ${numFries} x $${showMoney(FRIES_PRICE)} = $${showMoney(friesTotal)}</p>
+    <p>Sodas: ${numSoda} x $${showMoney(DRINK_PRICE)} = $${showMoney(sodaTotal)}</p>
+    <br>
+    <p>Subtotal before discount: $${showMoney(subtotal)}</p>
+    <p>Discount: $${showMoney(discount)}</p>
+    <p>Subtotal after discount: $${showMoney(subtotalAfterDiscount)}</p>
+    <p>Tax: $${showMoney(taxAmount)}</p>
+    <strong>Total: $${showMoney(finalTotal)}</strong>
+`;
 
-    let discount = 0;
-    if (subtotal >= DISCOUNT_THRESHOLD) {
-        discount = subtotal * DISCOUNT_RATE;
-    }
-    // calculate the subtotal after aplying the discount
-    let subtotalAfterDiscount = subtotal - discount;
-
-    let taxAmount = subtotalAfterDiscount * TAX_RATE;
-
-    // calculate the total the customer owes
-    let finalTotal = subtotalAfterDiscount + taxAmount;
-
-    // display the output
-    addSummaryDetail(orderSummary, `Subtotal before discount: $${showMoney(subtotal)}`);
-    addSummaryDetail(orderSummary, `Discount: $${showMoney(discount)}`);
-    addSummaryDetail(orderSummary, `Subtotal after discount: $${showMoney(subtotalAfterDiscount)}`);
-    addSummaryDetail(orderSummary, `Tax: $${showMoney(taxAmount)}`);
-    addSummaryDetail(orderSummary, `Final Total: $${showMoney(finalTotal)}`, true);
-
-    document.getElementById('thankYouImage').src = 'istockphoto-12153'; 
-    document.getElementById('thankYouImage').style.visibility = 'visible';
-}
-
-function addSummaryDetail(parent, text, isFinal = false) {
-    let paragraph = document.createElement('p');
-    paragraph.textContent = text;
-    if (isFinal) {
-        paragraph.style.fontWeight = 'bold';
-    }
-    parent.appendChild(paragraph);
-}
+document.getElementById("orderSummary").innerHTML = orderSummary;
