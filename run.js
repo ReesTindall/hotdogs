@@ -1,4 +1,4 @@
-//price of each item
+//price of each item 
 const HOTDOG_PRICE = 4.80;
 const FRIES_PRICE = 3.95;
 const DRINK_PRICE = 1.99;
@@ -60,7 +60,7 @@ function processOrder(event) {
         <strong>Final Total: $${showMoney(finalTotal)}</strong>
     `;
 
-    document.getElementById('thankYouImage').src = 'thankyou.jpg'; // Change image source
+    document.getElementById('thankYouImage').src = 'istockphoto-1215378017-612x612.jpg'; // Change image source
     document.getElementById('thankYouImage').style.visibility = 'visible'; // Make the image visible
 }
 
